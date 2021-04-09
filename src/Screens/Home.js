@@ -1,20 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {
-  Container,
-  Thumbnail,
-  Fab,
-  Header,
-  Tabs,
-  Tab,
-  Text,
-  Icon,
-  Button,
-} from 'native-base';
+import {StyleSheet} from 'react-native';
+import {Container, Thumbnail, Header, Tabs, Tab, Text} from 'native-base';
 import NewTask from '../Components/NewTask';
+import Form from '../Components/Modal';
 
 export default class Home extends Component {
+  state = {
+    active: false,
+  };
+
   render() {
     return (
       <Container style={styles.Container}>
@@ -41,6 +36,7 @@ export default class Home extends Component {
             <NewTask />
           </Tab>
         </Tabs>
+        <Form />
       </Container>
     );
   }
