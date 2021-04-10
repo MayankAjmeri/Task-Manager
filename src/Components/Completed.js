@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import Task from './Task';
 export default class NewTask extends Component {
   state = {
@@ -16,7 +16,7 @@ export default class NewTask extends Component {
   }
 
   getData() {
-    fetch('https://dermasync.herokuapp.com/api/tasks?completed=0')
+    fetch('https://dermasync.herokuapp.com/api/tasks?completed=1')
       .then(response => response.json())
       .then(responseJson => {
         this.setState({
@@ -31,18 +31,14 @@ export default class NewTask extends Component {
     const fetched = this.state.fetched;
     let desc = [];
     let length = this.state.tasks.length;
-
-    if (fetched && length > 0) {
+    if (fetched) {
       for (let i = 0; i < length; i++) {
         if (this.state.tasks[i].title == null) {
           continue;
         }
         desc.push(<Task tasks={this.state.tasks[i]} />);
       }
-    } else {
-      <Text>All tasks completed!!!!!!!</Text>;
     }
-
     return <ScrollView style={styles.list}>{desc}</ScrollView>;
   }
 }
@@ -51,5 +47,6 @@ const styles = StyleSheet.create({
   list: {
     overflow: 'scroll',
     paddingHorizontal: 20,
+    paddingBottom: 40,
   },
 });

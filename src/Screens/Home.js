@@ -1,9 +1,9 @@
-/* eslint-disable prettier/prettier */
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Container, Thumbnail, Header, Tabs, Tab, Text} from 'native-base';
 import NewTask from '../Components/NewTask';
-import Form from '../Components/Modal';
+import Completed from '../Components/Completed';
+import Form from '../Components/Form';
 
 export default class Home extends Component {
   state = {
@@ -12,9 +12,12 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Container style={styles.Container}>
-        <Header hasTabs style={styles.Header}>
-          <Text>Hello Steve Good Morning</Text>
+      <Container style={styles.container}>
+        <Header hasTabs style={styles.header}>
+          <View>
+            <Text style={styles.head}>Hello Steve,</Text>
+            <Text style={styles.gm}>Good Morning</Text>
+          </View>
           <Thumbnail
             source={{
               uri:
@@ -24,16 +27,21 @@ export default class Home extends Component {
         </Header>
         <Tabs tabBarUnderlineStyle={styles.tabs}>
           <Tab
-            activeTextStyle={styles.tabText}
+            heading="New Tasks"
+            activeTextStyle={{color: 'black', fontWeight: 'bold'}}
             activeTabStyle={styles.tab}
-            heading="New Task">
+            textStyle={{color: '#eaeaea', fontWeight: 'bold'}}
+            tabStyle={styles.tab}>
             <NewTask />
           </Tab>
           <Tab
             heading="Completed"
-            textStyle={styles.tabText}
+            activeTextStyle={{color: 'black', fontWeight: 'bold'}}
+            activeTabStyle={styles.tab}
+            textStyle={{color: '#eaeaea', fontWeight: 'bold'}}
+            // textStyle={styles.tabText}
             tabStyle={styles.tab}>
-            <NewTask />
+            <Completed />
           </Tab>
         </Tabs>
         <Form />
@@ -43,21 +51,24 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-  Container: {
+  container: {},
+  header: {
+    justifyContent: 'space-around',
+    marginVertical: 30,
     backgroundColor: 'white',
+  },
+  head: {
+    fontSize: 15,
+    color: 'grey',
+  },
+  gm: {
+    fontSize: 25,
+    fontWeight: 'bold',
   },
   tabs: {
-    backgroundColor: 'blue',
+    backgroundColor: '#5189f4',
   },
   tab: {
-    backgroundColor: 'white',
-  },
-  tabText: {
-    color: 'black',
-  },
-  Header: {
-    marginTop: 15,
-    paddingHorizontal: 24,
     backgroundColor: 'white',
   },
 });
